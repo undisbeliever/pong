@@ -9,7 +9,7 @@
 ;;  * REGION   - NTSC or PAL
 ;;  * ROM_NAME - a string of the ROM name.
 
-.include "includes/config.inc"
+.include "config.h"
 
 ; Allow memmap to declare these symbols.
 .import __ROMHEADER_EXPANSION_RAM
