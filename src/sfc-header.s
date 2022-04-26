@@ -41,14 +41,14 @@
 
 
 .segment "ROMHEADER"
-	.byte "FF"					; $FFB0 2 Digit maker code
-	.byte "SNES"					; $FFB2 4 Character game ID
+	.byte "  "					; $FFB0 2 Digit maker code (blank = unlicensed)
+	.byte "    "					; $FFB2 4 Character game ID (black = unlicensed)
 
 	.byte $00, $00, $00, $00, $00, $00, $00		; $FFB6 Fixed Value (7 bytes)
 
 	.byte .lobyte(__ROMHEADER_EXPANSION_RAM)	; $FFBD Expansion RAM Size
 	.byte $00					; $FFBE Special Version
-	.byte $00					; $FFBF Cartridge Type Sub-Number 
+	.byte $00					; $FFBF Cartridge Type Sub-Number
 
 	.byte .sprintf("%21s", ROM_NAME)		; $FFC0 ROM Name (21 Characters)
 
@@ -63,7 +63,8 @@
 	.word $AAAA					; $FFDC - Checksum compliment
 	.word $5555					; $FFDE - Checksum
 
-;; Define the Inturrupt Vectors.
+
+;; Define the Interrupt Vectors.
 ;;
 ;; `EmptyHandler` just links to an `RTI` and doesn't do anything.
 ;; If you are not using any of these handlers (like `CopHandler`)
