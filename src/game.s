@@ -100,6 +100,14 @@ EndPlayerCheck:
 .proc PlayGame
 	WAI
 
+	SEP	#$20
+.A8
+	; Wait until autojoy is completed
+	JoypadNotReady:
+		LDA HVJOY
+		AND #HVJOY_AUTOJOY
+		BNE JoypadNotReady
+
 	REP	#$30
 .A16
 .I16
