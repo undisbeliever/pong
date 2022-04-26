@@ -29,6 +29,16 @@
 	LDA	#0
 	STA	BGMODE
 
+	; Disabling interlacing
+	STZ SETINI
+
+	; Disable windows
+	STZ WOBJSEL
+	STZ WOBJLOG
+	STZ CGWSEL
+	STZ CGADSUB
+
+
 	; Black BG
 	STZ	CGADD
 	STZ	CGDATA
@@ -45,6 +55,10 @@ PaletteLoop:
 		INX
 		CPX	#32
 		BCC	PaletteLoop
+
+
+	LDA #VMAIN_INCREMENT_HIGH | VMAIN_INCREMENT_1
+	STA VMAIN
 
 
 	REP	#$30
@@ -91,6 +105,11 @@ OamResetHighLoop:
 
 	LDA	#TM_OBJ
 	STA	TM
+
+	STZ TS
+	STZ TMW
+	STZ TSW
+
 
 	LDA	#15
 	STA	INIDISP
